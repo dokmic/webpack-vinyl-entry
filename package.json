@@ -1,0 +1,40 @@
+{
+  "name": "webpack-vinyl-entry",
+  "version": "1.0.0",
+  "description": "The pretty webpack entry points",
+  "author": "Michael Dokolin <m@dokol.in>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dokmic/webpack-vinyl-entry"
+  },
+  "bugs": {
+    "url": "https://github.com/dokmic/webpack-vinyl-entry/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "codecov": "codecov"
+  },
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "peerDependencies": {
+    "webpack": "2 || 3 || 4"
+  },
+  "dependencies": {
+    "vinyl-fs": "^2.0",
+    "vinyl-transform": "^1.0"
+  },
+  "devDependencies": {
+    "codecov": "^3.0",
+    "eslint": "^4.0",
+    "eslint-config-google": "^0.9",
+    "jest": "^23.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage",
+    "collectCoverage": true
+  }
+}
