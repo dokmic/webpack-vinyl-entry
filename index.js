@@ -1,3 +1,32 @@
+const Stream = require('stream'),
+  vfs = require('vinyl-fs'),
+  transform = require('vinyl-transform');
+
+/**
+ * Get files from vinyl globs
+ *
+ * @param  {Array} globs
+ * @return {Promise}
+ */
+function src(globs) {
+  return new Promise(resolve => {
+    let files = [];
+
+    vfs.src(globs, {
+      buffer: false,
+    })
+    .pipe(transform(file => {
+      let stream = new Stream.PassThrough();
+
+      files.push(file);
+      stream.end(new Buffer(file));
+
+      return stream;
+    }))
+    .on('end', resolve.bind(this, files));
+  });
+}
+
 /**
  * Generate dynamic webpack entry
  *
@@ -20,3 +49,4 @@ function Entry(entries) {
 };
 
 module.exports = Entry;
+module.exports.src = src;

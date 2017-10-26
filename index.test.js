@@ -1,4 +1,5 @@
-const Entry = require('./index');
+const Entry = require('./index'),
+  path = require('path');
 
 it('resolves promises', () => {
   expect.assertions(1);
@@ -12,4 +13,15 @@ it('resolves promises', () => {
     a: 'file1',
     b: 'file2',
   });
+});
+
+it('resolves globs', () => {
+  expect.assertions(1);
+
+  return expect(Entry.src([
+    'index*.js',
+    '!index.test.js',
+  ])).resolves.toEqual([
+    path.resolve(__dirname, 'index.js'),
+  ]);
 });
