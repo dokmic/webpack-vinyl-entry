@@ -23,6 +23,13 @@ module.exports = {
       'path/to/file1.js',
       'path/to/file2.js',
     ],
+    pages: Entry.multi('src/pages', [
+      'src/common.js',
+      Entry.src([
+        'src/components/**/index.js',
+        'src/pages/**/index.js',
+      ]),
+    ]),
   }),
 
   // ...
@@ -36,7 +43,7 @@ This statement generates function wrapper over Promise that returns webpack comp
 ### `Entry(entries)`
 - `entries: Object` - Object of webpack compatible [entry points](https://webpack.js.org/concepts/entry-points/) or Promises.
 
-Returns function wrapping Promise that resolves all the Promises in `entries`.
+Returns function wrapping Promise that resolves all the promises in `entries`.
 
 ### `Entry.src(globs)`
 - `globs: Array` - Array of [vinyl-fs glob strings](https://github.com/gulpjs/vinyl-fs#srcglobs-options).
@@ -44,6 +51,51 @@ Returns function wrapping Promise that resolves all the Promises in `entries`.
 *Globs are executed in order, so negations should follow positive globs.*
 
 Returns array of resolved paths.
+
+### `Entry.multi(scope, files)`
+- `scope: string` - Base directory.
+- `files: Array` - List of files or promises like `Entry.src`.
+
+Generates multi-page entries from the base directory. All the files that don't belong to the base directory will be added at the beginning of every entry.
+
+#### Example
+
+Let's say we have the following file structure:
+```
+- src/
+    common.js
+  - pages/
+    - page1/
+       index.js
+       component.js
+    - page2/
+       index.js
+```
+
+And the following piece of code in `webpack.config.js`:
+```javascript
+pages: Entry.multi('src/pages', [
+  'src/common.js',
+  Entry.src([
+    'src/pages/**/*.js',
+  ]),
+]),
+```
+
+That will generate us two entry points:
+```json
+{
+  "page1": [
+    "src/common.js",
+    "src/page1/index.js",
+    "src/page1/component.js"
+  ],
+  "page2": [
+    "src/common.js",
+    "src/page2/index.js"
+  ]
+}
+```
 
 ## Links
 - [webpack entry points](https://webpack.js.org/concepts/entry-points/)

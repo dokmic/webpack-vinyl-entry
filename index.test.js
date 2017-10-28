@@ -25,3 +25,29 @@ it('resolves globs', () => {
     path.resolve(__dirname, 'index.js'),
   ]);
 });
+
+it('resolves multiple', () => {
+  expect.assertions(1);
+
+  return expect(new Entry({
+    pages: Entry.multi('src/pages', [
+      'src/pages/page1/index.js',
+      'src/pages/page1/component.js',
+      'src/pages/page2/index.js',
+      Entry.src([
+        'index*.js',
+        '!index.test.js',
+      ]),
+    ]),
+  })()).resolves.toEqual({
+    page1: [
+      path.resolve('index.js'),
+      path.resolve('src/pages/page1/index.js'),
+      path.resolve('src/pages/page1/component.js'),
+    ],
+    page2: [
+      path.resolve('index.js'),
+      path.resolve('src/pages/page2/index.js'),
+    ],
+  });
+});
