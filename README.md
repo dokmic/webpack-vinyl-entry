@@ -1,5 +1,9 @@
 # Webpack Vinyl Entry
 
+[![NPM](https://img.shields.io/npm/v/webpack-vinyl-entry.svg)](https://www.npmjs.com/package/webpack-vinyl-entry)
+[![Build Status](https://travis-ci.org/dokmic/webpack-vinyl-entry.svg?branch=master)](https://travis-ci.org/dokmic/webpack-vinyl-entry)
+[![Code Coverage](https://codecov.io/gh/dokmic/webpack-vinyl-entry/badge.svg?branch=master)](https://codecov.io/gh/dokmic/webpack-vinyl-entry?branch=master)
+
 This JavaScript library provides gulp-like entry points in your webpack configuration.
 
 ## Install
