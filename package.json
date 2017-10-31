@@ -2,6 +2,12 @@
   "name": "webpack-vinyl-entry",
   "version": "1.0.0",
   "description": "The pretty webpack entry points",
+  "keywords": [
+    "webpack",
+    "vinyl",
+    "vinyl-fs",
+    "entrypoint"
+  ],
   "author": "Michael Dokolin <m@dokol.in>",
   "license": "MIT",
   "repository": {
