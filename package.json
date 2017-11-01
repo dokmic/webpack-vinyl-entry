@@ -1,6 +1,6 @@
 {
   "name": "webpack-vinyl-entry",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The pretty webpack entry points",
   "keywords": [
     "webpack",
